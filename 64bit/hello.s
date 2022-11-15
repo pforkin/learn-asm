@@ -1,8 +1,21 @@
+/*
+
+GNU Assembler Hello World 64 bit edition
+Using Linux System calls for 64-bit
+
+*/
+
 #data section
 .data
+
+#constants
+SYS_WRITE = 1
+SYS_EXIT = 60
+STD_OUT = 1
+
 msg:
     .string "Hello World!\n"
-    .set len, . - msg
+    .set msglen, . - msg
 
 #section code
 .text 
@@ -12,13 +25,13 @@ msg:
 
 _start:
     #write string
-    mov $1, %rax
-    mov $1, %rdi
-    mov $msg,   %rsi
-    mov $len,   %rdx
+    movq $SYS_WRITE, %rax
+    movq $STD_OUT, %rdi
+    movq $msg, %rsi
+    movq $msglen, %rdx
     syscall
 
     #exit
-    mov $60, %rax
+    movq $SYS_EXIT, %rax
     xor %rdi, %rdi
     syscall
