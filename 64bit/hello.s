@@ -1,8 +1,7 @@
 /*
-
-GNU Assembler Hello World 64 bit edition
+GNU Assembler 64 bit edition
 Using Linux System calls for 64-bit
-
+Example 'Hello World'
 */
 
 #data section
@@ -21,7 +20,7 @@ msg:
 .text 
 
 #set main function
-.global _start 
+.globl _start 
 
 _start:
     #write string
